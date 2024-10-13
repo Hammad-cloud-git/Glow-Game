@@ -1,0 +1,89 @@
+body {
+    text-align: center;
+    font-family: Poppins, sans-serif; /* Added default font family */
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h3 {
+    color: white;
+}
+
+/* Apply animation for the canvas */
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 5px solid transparent; /* Change this to transparent for the glowing effect */
+    background: radial-gradient(circle, #000000 0%, #1e1e1e 100%);
+    box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, 0 0 90px #00ff00;
+    animation: neonBorder 1.5s infinite alternate; /* Apply the animation */
+}
+
+/* Keyframe animation for rotating neon colors */
+@keyframes neonBorder {
+    0% {
+        box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, 0 0 90px #00ff00;
+        border-color: transparent;
+    }
+    25% {
+        box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff, 0 0 90px #ff00ff;
+        border-color: transparent;
+    }
+    50% {
+        box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #00ffff;
+        border-color: transparent;
+    }
+    75% {
+        box-shadow: 0 0 30px #ffff00, 0 0 60px #ffff00, 0 0 90px #ffff00;
+        border-color: transparent;
+    }
+    100% {
+        box-shadow: 0 0 30px #ff7f00, 0 0 60px #ff7f00, 0 0 90px #ff7f00;
+        border-color: transparent;
+    }
+}
+
+#score, #timer {
+    font-size: 18px;
+    margin: 10px;
+    color: #00ff00;
+}
+
+.snake-segment {
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    border-radius: 4px;
+}
+
+
+/* 
+body {
+    text-align: center;
+    font-family: Poppins;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h3 {
+    color: white;
+}
+
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 5px solid red;
+    background: radial-gradient(circle, #000000 0%, #1e1e1e 100%);
+    box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, 0 0 90px #00ff00;
+}
+
+#score, #timer {
+    font-size: 18px;
+    margin: 10px;
+    color: #00ff00;
+}
+
+.snake-segment {
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    border-radius: 4px;
+} */
