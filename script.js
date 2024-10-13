@@ -41,7 +41,6 @@ let currentColorIndex = 0; // Start with the first color
 function gameLoop() {
     if (isGameOver()) {
         alert("Game Over! Your score: " + score + ". Time survived: " + Math.floor(timeElapsed / 60) + " minutes " + (timeElapsed % 60) + " seconds.");
-
         document.location.reload();
     } else {
         setTimeout(() => {
@@ -106,12 +105,16 @@ function changeDirection(event) {
 
     if (keyPressed === 37 && !goingRight) { // left arrow
         snakeDirection = { x: -1, y: 0 };
+        changeShadowColor('#ff0000'); // Change color on left direction
     } else if (keyPressed === 38 && !goingDown) { // up arrow
         snakeDirection = { x: 0, y: -1 };
+        changeShadowColor('#00ffff'); // Change color on up direction
     } else if (keyPressed === 39 && !goingLeft) { // right arrow
         snakeDirection = { x: 1, y: 0 };
+        changeShadowColor('#ffff00'); // Change color on right direction
     } else if (keyPressed === 40 && !goingUp) { // down arrow
         snakeDirection = { x: 0, y: 1 };
+        changeShadowColor('#ff7f00'); // Change color on down direction
     }
 }
 
@@ -184,5 +187,39 @@ function changeNeonColor() {
     currentColorIndex = (currentColorIndex + 1) % neonColors.length;
 }
 
+// Change the shadow color based on direction
+function changeShadowColor(color) {
+    canvas.style.boxShadow = `0 0 30px ${color}, 0 0 60px ${color}, 0 0 90px ${color}`;
+}
+
 // Start the game
 gameLoop();
+
+// Mobile controls
+function handleTouch(event) {
+    const touch = event.touches[0];
+    const canvasRect = canvas.getBoundingClientRect();
+    const x = touch.clientX - canvasRect.left;
+    const y = touch.clientY - canvasRect.top;
+
+    // Determine direction based on touch position
+    if (x < canvas.width / 2) {
+        if (y < canvas.height / 2) {
+            snakeDirection = { x: -1, y: 0 }; // left
+        } else {
+            snakeDirection = { x: 0, y: -1 }; // up
+        }
+    } else {
+        if (y < canvas.height / 2) {
+            snakeDirection = { x: 1, y: 0 }; // right
+        } else {
+            snakeDirection = { x: 0, y: 1 }; // down
+        }
+    }
+}
+
+// Add touch event listener for mobile controls
+canvas.addEventListener("touchstart", handleTouch);
+
+// Keep the existing keyboard control for desktop
+document.addEventListener("keydown", changeDirection);
