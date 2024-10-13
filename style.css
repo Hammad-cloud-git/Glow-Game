@@ -20,6 +20,14 @@ canvas {
     animation: neonBorder 1.5s infinite alternate; /* Apply the animation */
 }
 
+@media (max-width: 600px) {
+    canvas {
+        width: 100%; /* Make the canvas take full width on small screens */
+        height: auto; /* Keep aspect ratio */
+    }
+}
+
+
 /* Keyframe animation for rotating neon colors */
 @keyframes neonBorder {
     0% {
